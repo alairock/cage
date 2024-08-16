@@ -18,7 +18,7 @@ func GenerateKeyPair() (string, string, error) {
 	return pubKeyURLSafe, privKeyURLSafe, nil
 }
 
-func SignServiceToServiceToken(privKeyURLSafe string, message []byte) (string, error) {
+func SignPayload(privKeyURLSafe string, message []byte) (string, error) {
 	privKey, err := base64.URLEncoding.DecodeString(privKeyURLSafe)
 	if err != nil {
 		return "", err
@@ -32,7 +32,7 @@ func SignServiceToServiceToken(privKeyURLSafe string, message []byte) (string, e
 	return token, nil
 }
 
-func VerifyServiceToServiceToken(pubKeyURLSafe string, token string) ([]byte, error) {
+func VerifySignature(pubKeyURLSafe string, token string) ([]byte, error) {
 	pubKey, err := base64.URLEncoding.DecodeString(pubKeyURLSafe)
 	if err != nil {
 		return nil, err
