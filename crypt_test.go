@@ -27,13 +27,13 @@ func TestKeyPair(t *testing.T) {
 	t.Log(privKey)
 
 	// sign message with private key
-	signature, err := SignServiceToServiceToken(privKey, []byte("message"))
+	signature, err := SignPayload(privKey, []byte("message"))
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	// verify signature
-	msg, err := VerifyServiceToServiceToken(pubKey, signature)
+	msg, err := VerifySignature(pubKey, signature)
 	if err != nil {
 		t.Fatal(err)
 	}
